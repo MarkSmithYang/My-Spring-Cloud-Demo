@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--自身的依赖信息-->
+    <groupId>com.yb</groupId>
+    <artifactId>eureka-client-query</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+
+    <!--名称和描述-->
+    <name>eureka-client-query</name>
+    <description>Demo project for Spring Boot</description>
+
+    <!--依赖父工程-->
+    <parent>
+        <groupId>com.yb</groupId>
+        <artifactId>springcloud</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <!--基础的统一的版本控制和编码设置-->
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+
+    <!--项目依赖,maven的打包配置最好配上,配上总没错-->
+    <dependencies>
+        <!--SpringCloud相关的eureka client依赖-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-netflix-eureka-client</artifactId>
+        </dependency>
+        <!--SpringBoot运行web接口必要依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!--SpringBoot的jpa持久层依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <!--postgresql数据库驱动依赖,版本已在父pom控制-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <!--阿里的Druid连接池依赖-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+    </dependencies>
+
+    <!--maven的打包插件-->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
