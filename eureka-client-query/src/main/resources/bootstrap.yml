@@ -6,38 +6,25 @@ server:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://localhost:8771/eureka/
+      #注入目标，配置服务中心url，与服务端的配置保持一致,这里可以写多个，以“，”分隔，
+      #如http://server1:8781/eureka/,http://server2:8782/eureka/
+      defaultZone: http://192.168.2.233:8771/eureka/
+  instance:
+    hostname: localhost
 
 #其他相关配置
 spring:
   application:
     #微服务名称,可以和项目保持一致(必要--可用于服务间访问)
-    name: yb-eureka-client-query
+    name: eureka-client-query
   datasource:
     #数据库相关的配置
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://192.168.2.51:5432/postgres?useSSL=false
     username: postgres
     password: root
-    #Druid连接配置
-    type: com.alibaba.druid.pool.DruidDataSource
-#    #下面为连接池的补充设置,应用到上面所有数据源中---->这些详细配置可以省略,使用默认值
-#    initialSize: 5
-#    minIdle: 5
-#    maxActive: 20
-#    #下面为连接池的补充设置,应用到上面所有数据源中---->这些详细配置可以省略,使用默认值
-#    maxWait: 60000
-#    #配置间隔多久才进行一次检测，检测需要关闭的空闲连接,单位是毫秒
-#    timeBetweenEvictionRunsMillis: 60000
-#    #配置一个连接在池中最小生存的时间,单位是毫秒
-#    minEvictableIdleTimeMillis: 300000
-#    validationQuery: SELECT 1 FROM DUAL
-#    testWhileIdle: true
-#    testOnBorrow: false
-#    testOnReturn: false
-#    #配置监控统计拦截的filters,去掉后监控界面sql无法统计,'wall'用于防火墙
-#    filters: stat,wall,log4j
-#    logSlowSql: true
+    #springboot2.x的默认连接池--(目前最好的连接池,type加不加声明都可以,因为是默认的)
+    type: com.zaxxer.hikari.HikariDataSource
   #jpa的相关配置--使用默认的自动建表策略
   jpa:
     hibernate:
@@ -57,5 +44,6 @@ spring:
           #兼容SpringBoot2.X配置
           use_jdbc_metadata_defaults: false
 
-
-
+#改配置会生成一个log文件夹,并且里面放置微服务.log的日志文件(有些好像还会有日期)
+logging:
+  file: log/${spring.application.name}.log

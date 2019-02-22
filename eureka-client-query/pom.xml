@@ -31,6 +31,11 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-netflix-eureka-client</artifactId>
         </dependency>
+        <!--熔断器依赖,没有此依赖@SpringCloudApplication的熔断器注解会报错-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
+        </dependency>
         <!--SpringBoot运行web接口必要依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -46,16 +51,12 @@
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
         </dependency>
-        <!--阿里的Druid连接池依赖-->
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-        </dependency>
-
     </dependencies>
 
     <!--maven的打包插件-->
     <build>
+        <!--指定jar包的打包名-->
+        <finalName>eureka-client-query</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

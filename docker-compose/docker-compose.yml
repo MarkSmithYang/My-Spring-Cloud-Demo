@@ -1,0 +1,21 @@
+version: '2.0'
+services:
+  #(微)服务名
+  eureka-client-query:
+    extends:
+      #继承上面的文件信息
+      file: common.yml
+      service: commonService
+    environment:
+    - port=8772
+    #在私有docker镜像仓库里的镜像--(实际请款更没有在打标签tag的时候加一层为project名的目录)
+    #image: ${registry}/${project}/yb_demo_govgate:${tag}
+    image: ${registry}/${project}/eureka-client-query:${tag}
+  #(微)服务名
+  eureka-server:
+    extends:
+      file: common.yml
+      service: commonService
+    environment:
+    - port=8771
+    image: ${registry}/${project}/eureka-server:${tag}

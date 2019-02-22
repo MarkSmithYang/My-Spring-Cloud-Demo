@@ -1,0 +1,12 @@
+version: '2.0'
+services:
+  commonService:
+    extra_hosts:
+    #注意,后面的ip可以在hosts里配置成一些ip来映射以隐藏真实ip来使用
+    - "yb001:192.168.2.51"
+    network_mode: "host"
+    environment:
+    - host=${host}
+    - runEnv=${runEnv}
+    - bind=${host}
+    - eureka=${eureka}

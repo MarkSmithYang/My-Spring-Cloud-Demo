@@ -35,7 +35,6 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>
         <postgresql.version>42.2.5</postgresql.version>
-        <druid.version>1.1.13</druid.version>
     </properties>
 
     <!--通过这里依赖传递给子工程,子工程就不用再一次引入这个依赖了-->
@@ -65,13 +64,6 @@
                 <artifactId>postgresql</artifactId>
                 <version>${postgresql.version}</version>
             </dependency>
-            <!--阿里的Druid连接池依赖-->
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>druid</artifactId>
-                <version>${druid.version}</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 
