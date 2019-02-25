@@ -5,22 +5,23 @@ server:
 #eureka服务注册地址(eureka server服务地址)--注意最后是/来结尾的
 eureka:
   client:
-    serviceUrl:
+    service-url:
       #注入目标，配置服务中心url，与服务端的配置保持一致,这里可以写多个，以“，”分隔，
       #如http://server1:8781/eureka/,http://server2:8782/eureka/
-      defaultZone: http://192.168.2.233:8771/eureka/
-  instance:
-    hostname: localhost
+      defaultZone: http://localhost:8771/eureka/
 
 #其他相关配置
 spring:
+  profiles:
+    #设置服务的环境--(开发环境)
+    active: dev
   application:
     #微服务名称,可以和项目保持一致(必要--可用于服务间访问)
     name: eureka-client-query
   datasource:
     #数据库相关的配置
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://192.168.2.51:5432/postgres?useSSL=false
+    url: jdbc:postgresql://localhost:5432/postgres?useSSL=false
     username: postgres
     password: root
     #springboot2.x的默认连接池--(目前最好的连接池,type加不加声明都可以,因为是默认的)

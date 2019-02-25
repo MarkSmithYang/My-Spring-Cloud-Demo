@@ -3,7 +3,7 @@ services:
   commonService:
     extra_hosts:
     #注意,后面的ip可以在hosts里配置成一些ip来映射以隐藏真实ip来使用
-    - "yb001:192.168.2.51"
+    - "yb001:10.20.30.1"
     network_mode: "host"
     environment:
     - host=${host}

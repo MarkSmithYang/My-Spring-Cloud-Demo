@@ -6,8 +6,8 @@ server:
 eureka:
   instance:
     #服务注册中心实例的主机名
-    hostname: 192.168.2.233
-    #使用ip替代实例名
+    hostname: localhost
+    #注册服务时使用ip替代实例名
     #prefer-ip-address: true
     #设置实例的ID为ip:port
     #instance-id: ${eureka.instance.hostname}:${server.port}
@@ -31,7 +31,7 @@ eureka:
     #INCORRECTLY CLAIMING INSTANCES ARE UP WHEN THEY'RE NOT. RENEWALS ARE LESSER THAN THRESHOLD AND HENCE THE INSTANCES
     #ARE NOT BEING EXPIRED JUST TO BE SAFE.这样的错误在eureka server的那个页面)
     #关闭之后就会出现(THE SELF PRESERVATION MODE IS TURNED OFF. THIS MAY NOT PROTECT INSTANCE EXPIRY IN CASE OF NETWORK/OTHER PROBLEMS.)
-    #意思是--自保存模式被关闭,在网络/其他问题时,这可能无法保护实例过期
+    #false意思是--自保存模式被关闭,在网络/其他问题时,这可能无法保护实例过期
     enable-self-preservation: true
 
 #这里使用spring security对注册中心做一个用户名密码登录
@@ -45,7 +45,12 @@ spring:
   #先做个基础的，后面再来完善安全性问题
   security:
     basic:
-      enabled: false
+      enabled: true
     user:
       name: admin
       password: 123456
+
+#改配置会生成一个log文件夹,并且里面放置微服务.log的日志文件(有些好像还会有日期),
+#不配置此文件log文件就会在外面名称为例如LOG_FILE_IS_UNDEFINED.2019-02-20.0.log
+logging:
+  file: log/${spring.application.name}.log
